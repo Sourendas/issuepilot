@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "severity": "high",
+  "summary": "Issue looks like: CSV export crashes when sheet has empty rows. Mock triage (no NEBIUS_API_KEY). Body length=261 chars.",
+  "repro_gaps": [
+    "Exact repro steps (numbered) are missing"
+  ],
+  "fix_plan": [
+    "Reproduce locally with the reported inputs / empty cells if relevant",
+    "Add null/empty guards at the reported crash site",
+    "Cover the edge case with a unit or integration test",
+    "Update user-facing error if stack traces are hidden"
+  ],
+  "test_ideas": [
+    "Fixture with blank SKU / empty rows",
+    "Regression: happy-path export still works"
+  ],
+  "pr_title": "fix: harden handling for issue \u2014 CSV export crashes when sheet has empty rows",
+  "pr_body": "## Summary\nCSV export crashes when sheet has empty rows\n\n## Changes\n- Guard empty/undefined fields\n- Add tests for reported case\n\n## Test plan\n- [ ] Repro fixed\n- [ ] Happy path OK\n",
+  "labels": [
+    "bug"
+  ],
+  "meta": {
+    "mode": "mock",
+    "model": null,
+    "footer": "Mock planner (no API key)",
+    "note": "Set NEBIUS_API_KEY for live Token Factory + Nemotron"
+  }
+}
