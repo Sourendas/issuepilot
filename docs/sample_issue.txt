@@ -1,0 +1,7 @@
+Title: CSV export crashes when sheet has empty rows
+
+Body:
+When I click Export CSV on the inventory page, the app throws
+TypeError: Cannot read properties of undefined (reading 'sku').
+Happens only if some rows have blank SKU cells. Chrome 129, Mac.
+Expected: skip blank rows or write empty string. No stack trace in UI.

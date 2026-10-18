@@ -92,3 +92,6 @@ nebius-nvidia/
 ## License
 
 MIT
+
+## Hosted demo (static replay)
+https://sourendas.github.io/issuepilot/ replays the built-in sample issue using a recorded response from one real Nemotron call on Nebius Token Factory. GitHub Pages has no backend, so custom issues need a local run (`python3 app/server.py` with `NEBIUS_API_KEY` set).

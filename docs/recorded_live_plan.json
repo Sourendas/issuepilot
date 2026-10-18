@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "severity": "high",
+  "summary": "Exporting CSV fails with a TypeError when a sheet contains rows with empty SKU cells, causing the export operation to crash.",
+  "repro_gaps": [
+    "Exact row data that triggers the issue (e.g., number of empty SKU cells, surrounding column values)",
+    "Whether the error occurs on all empty SKU rows or only specific patterns",
+    "If the issue is reproducible consistently across multiple inventories or only intermittently"
+  ],
+  "fix_plan": [
+    "Locate the CSV export code that accesses the SKU field",
+    "Add a guard to check for undefined or empty SKU values before reading the property",
+    "Replace undefined values with an empty string or skip the entire row when SKU is missing",
+    "Run existing unit tests and add a new test case covering rows with blank SKU cells"
+  ],
+  "test_ideas": [
+    "Create a test sheet with several rows where the SKU column is empty and verify that the export completes without throwing",
+    "Confirm that the generated CSV contains empty cells or omitted rows for those entries",
+    "Run the export on multiple inventories to ensure the fix does not introduce regressions"
+  ],
+  "pr_title": "fix(csv): handle empty SKU cells gracefully",
+  "pr_body": "When a sheet contains rows with blank SKU cells the CSV export throws `TypeError: Cannot read properties of undefined (reading 'sku')`. This change adds a defensive check before accessing the SKU property, substituting an empty string when the value is missing. The fix prevents the crash and ensures the export completes successfully.\n\n- Guard against undefined SKU values\n- Replace missing SKU with `''` to keep CSV format valid\n- Add unit test for rows with empty SKU\n- Update documentation of export behavior\n\nCloses #1234",
+  "labels": [
+    "bug",
+    "csv",
+    "export",
+    "high-severity"
+  ],
+  "meta": {
+    "mode": "live",
+    "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "provider": "nebius-token-factory",
+    "footer": "Nebius Token Factory + NVIDIA model nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+  }
+}
